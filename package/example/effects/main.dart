@@ -23,21 +23,30 @@ void main() {
 DeactNode toggleButton() {
   return fc((ctx) {
     final toggle = ctx.globalState<bool>('toggle');
-    return button(onclick: (_) => toggle.set((t) => !t), children: [txt('Mount/Unmount Component')]);
+    return button(
+      onclick: (_) => toggle.set((t) => !t),
+      children: [txt('Mount/Unmount Component')],
+    );
   });
 }
 
 DeactNode counterButton() {
   return fc((ctx) {
     final counter = ctx.globalState<int>('counter');
-    return button(onclick: (_) => counter.set((c) => c + 1), children: [txt('Change State')]);
+    return button(
+      onclick: (_) => counter.set((c) => c + 1),
+      children: [txt('Change State')],
+    );
   });
 }
 
 DeactNode renderButton() {
   return fc((ctx) {
     //final render = ctx.globalState<bool>('render');
-    return button(onclick: (_) => ctx.scheduleRerender(completeTree: true), children: [txt('Rerender Component')]);
+    return button(
+      onclick: (_) => ctx.scheduleRerender(completeTree: true),
+      children: [txt('Rerender Component')],
+    );
   });
 }
 
@@ -65,7 +74,9 @@ DeactNode effectComponent() {
         return () => print('cleanup: state change');
       }, dependsOn: [counter]);
 
-      return div(children: [txt('I am a component with effects! Open the browsers console.')]);
+      return div(children: [
+        txt('I am a component with effects! Open the browsers console.')
+      ]);
     });
   });
 }

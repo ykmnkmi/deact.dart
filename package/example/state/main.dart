@@ -14,7 +14,10 @@ DeactNode state() {
         final counter = ctx.state('counter', 0);
 
         return fragment([
-          button(onclick: (_) => counter.set((c) => c + 1), children: [txt('Click me to increment to counter')]),
+          button(
+            onclick: (_) => counter.set((c) => c + 1),
+            children: [txt('Click me to increment to counter')],
+          ),
           div(children: [txt('Counter: ${counter.value}')]),
         ]);
       }),
@@ -23,7 +26,10 @@ DeactNode state() {
         final counter = ctx.state('counter', 0);
 
         return fragment([
-          button(onclick: (_) => counter.set((c) => c + 1), children: [txt('Click me to increment to counter')]),
+          button(
+            onclick: (_) => counter.set((c) => c + 1),
+            children: [txt('Click me to increment to counter')],
+          ),
           div(children: [txt('Counter: ${counter.value}')]),
         ]);
       }),

@@ -1,5 +1,11 @@
 # Changelog
 
+## v1.6.0
+
+- The type of child nodes was changed from `Iterable<DeactNode>` to `Iterable<Object>` to allow more flexible usage of child nodes.
+  This allows to provide any object as a child node. If the object is not a `DeactNode`, it is converted to a `TextNode` using interpolation.
+  This change is backward compatible.
+
 ## v1.5.2
 
 - Several bugfixes for partial tree render.
@@ -40,7 +46,7 @@
 
 ## v1.0.0-nullsafety.2
 
-- BREAKING CHANGE: Fixed nullable parameter types for 
+- BREAKING CHANGE: Fixed nullable parameter types for
   - `ComponentContext.ref()`
   - `ComponentContext.refProvided()`
   - `ComponentContext.state()`

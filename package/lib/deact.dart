@@ -38,7 +38,8 @@ Deact deact(String selector, RootNodeProvider root) {
   }
 
   final rootNode = RootNode._(selector, hostElement, root);
-  final rootLocation = _TreeLocation(null, rootNode, _NodeType.root, '"$selector"', 0);
+  final rootLocation =
+      _TreeLocation(null, rootNode, _NodeType.root, '"$selector"', 0);
 
   // create the deact instance
   final deact = _DeactInstance(rootLocation);

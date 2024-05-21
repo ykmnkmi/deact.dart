@@ -10,12 +10,18 @@ abstract class GlobalRefProvider {}
 /// the value of the reference or change the value.
 ///
 /// See also [ComponentContext.globalRef].
-class GlobalRefProviderComponent<T> extends ComponentNode implements GlobalRefProvider {
+class GlobalRefProviderComponent<T> extends ComponentNode
+    implements GlobalRefProvider {
   final String _name;
   final T? _initialValue;
-  final Iterable<DeactNode> _children;
+  final Iterable<Object> _children;
 
-  GlobalRefProviderComponent._(Object? key, this._name, this._initialValue, this._children) : super(key: key);
+  GlobalRefProviderComponent._(
+    Object? key,
+    this._name,
+    this._initialValue,
+    this._children,
+  ) : super(key: key);
 
   @override
   DeactNode render(ComponentContext context) {
@@ -31,6 +37,11 @@ class GlobalRefProviderComponent<T> extends ComponentNode implements GlobalRefPr
 /// The reference can be accessed using
 /// [ComponentContext.globalRef] with the according
 /// [name] and type [T].
-DeactNode globalRef<T>({Object? key, required String name, T? initialValue, required Iterable<DeactNode> children}) {
+DeactNode globalRef<T>({
+  Object? key,
+  required String name,
+  T? initialValue,
+  required Iterable<Object> children,
+}) {
   return GlobalRefProviderComponent<T>._(key, name, initialValue, children);
 }

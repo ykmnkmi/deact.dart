@@ -16,10 +16,30 @@ class _TreeLocation {
   final int? position;
   final Object? key;
 
-  _TreeLocation(this.parent, this.node, this.type, this.description, this.position, {this.key});
+  _TreeLocation(
+    this.parent,
+    this.node,
+    this.type,
+    this.description,
+    this.position, {
+    this.key,
+  });
 
-  _TreeLocation addChild(DeactNode node, _NodeType type, String description, int? position, {Object? key}) {
-    final child = _TreeLocation(this, node, type, description, position, key: key);
+  _TreeLocation addChild(
+    DeactNode node,
+    _NodeType type,
+    String description,
+    int? position, {
+    Object? key,
+  }) {
+    final child = _TreeLocation(
+      this,
+      node,
+      type,
+      description,
+      position,
+      key: key,
+    );
     children.add(child);
     return child;
   }
@@ -100,7 +120,8 @@ class _TreeLocation {
             after++;
           }
         } else {
-          final s = _countElementNodes(location.children, split, splitReached, 0, 0);
+          final s =
+              _countElementNodes(location.children, split, splitReached, 0, 0);
           before += s.$1;
           after += s.$2;
         }
@@ -115,7 +136,8 @@ class _TreeLocation {
     return locations;
   }
 
-  void _componentLocations(_TreeLocation location, Set<_TreeLocation> locations) {
+  void _componentLocations(
+      _TreeLocation location, Set<_TreeLocation> locations) {
     if (location.type == _NodeType.component) {
       locations.add(location);
     }
@@ -138,7 +160,9 @@ class _TreeLocation {
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
-        other is _TreeLocation && runtimeType == other.runtimeType && toString() == other.toString();
+        other is _TreeLocation &&
+            runtimeType == other.runtimeType &&
+            toString() == other.toString();
   }
 
   @override

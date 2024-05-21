@@ -6,7 +6,8 @@ class _TypeLiteral<T> {
 
 /// A combination of a [GlobalStateProvider]
 /// and a [GlobalRefProvider].
-abstract class GlobalProvider implements GlobalStateProvider, GlobalRefProvider {}
+abstract class GlobalProvider
+    implements GlobalStateProvider, GlobalRefProvider {}
 
 /// A reference to a value.
 ///
@@ -62,7 +63,8 @@ class State<T> {
   T? _value;
   bool _valueChanged = true;
 
-  State._(this._instance, this._locationId, this._global, this._value) : _type = _TypeLiteral<T>();
+  State._(this._instance, this._locationId, this._global, this._value)
+      : _type = _TypeLiteral<T>();
 
   /// Executes to provided [updater] function to update
   /// a part of the state. This function is useful for
@@ -137,7 +139,7 @@ class ComponentContext {
   ComponentContext._(this._parent, this._instance, this._locationId);
 
   /// Creates a reference with the given [name] and
-  /// [intialValue].
+  /// [initialValue].
   ///
   /// If no reference is registered with the given
   /// [name], a new reference is created with
@@ -172,7 +174,11 @@ class ComponentContext {
   ///
   /// Setting [global] to `true` makes the reference
   /// accessible for all children of the component.
-  Ref<T> refProvided<T>(String name, InitialValueProvider<T> initialValueProvider, {bool global = false}) {
+  Ref<T> refProvided<T>(
+    String name,
+    InitialValueProvider<T> initialValueProvider, {
+    bool global = false,
+  }) {
     return _refs.putIfAbsent(name, () {
       final initialValue = initialValueProvider.call();
       final ref = Ref<T>._(global, initialValue);
@@ -201,7 +207,7 @@ class ComponentContext {
   }
 
   /// Creates a state with the given [name] and
-  /// [intialValue]. This state is local to the component.
+  /// [initialValue]. This state is local to the component.
   ///
   /// If no state is registered with the given
   /// [name], a new state is created with [initialValue]
@@ -243,7 +249,11 @@ class ComponentContext {
   ///
   /// Setting [global] to `true` makes the state accessible
   /// for all children of the component.
-  State<T> stateProvided<T>(String name, InitialValueProvider<T> initialValueProvider, {bool global = false}) {
+  State<T> stateProvided<T>(
+    String name,
+    InitialValueProvider<T> initialValueProvider, {
+    bool global = false,
+  }) {
     return _states.putIfAbsent(name, () {
       final initialValue = initialValueProvider();
       final state = State<T>._(_instance, _locationId, global, initialValue);
@@ -268,7 +278,8 @@ class ComponentContext {
       }
       ctx = ctx._parent;
     }
-    return throw StateError('no global state with name $name and type $S found!');
+    return throw StateError(
+        'no global state with name $name and type $S found!');
   }
 
   /// Introduces an effect that will be called, if the
@@ -301,7 +312,8 @@ class ComponentContext {
     } else {
       final location = _instance.rootLocation.find(_locationId);
       if (location != null) {
-        _renderInstance(_instance, nodeLocation: completeTree ? null : location);
+        _renderInstance(_instance,
+            nodeLocation: completeTree ? null : location);
       }
       //throw StateError('location $_locationId not found!');
     }
@@ -356,8 +368,8 @@ class Functional extends ComponentNode {
 /// A helper function to implement functional components.
 ///
 /// This functions creates a [Functional]. The provided
-/// [builder function] will be called in the [render]
-/// function.
+/// [builder function] will be called in the
+/// [Functional.render] function.
 ///
 /// States and effects are not bound to a component but to
 /// its location the node hierarchy. If no [key] is provided,

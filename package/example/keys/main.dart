@@ -9,7 +9,8 @@ void main() {
       (ctx) {
         final asc = ctx.state('asc', true);
         final counters = ctx.state('counter', [
-          counter('1', 1, null), // components without a key lose its state if moved inside a list (thus inside the DOM)
+          // components without a key lose its state if moved inside a list (thus inside the DOM)
+          counter('1', 1, null),
           counter('2', -1, null),
           counter('3', 10, 'key1'),
           counter('4', -10, 'key2'),
@@ -19,7 +20,9 @@ void main() {
           ...(asc.value ? counters.value : counters.value.reversed),
           button(
             onclick: (_) => asc.value = !asc.value, // toggle the list direction
-            children: [txt('Toggle Direction (index 1 and 2 lose their state)')],
+            children: [
+              txt('Toggle Direction (index 1 and 2 lose their state)')
+            ],
           ),
         ]);
       },

@@ -19,7 +19,10 @@ void main() {
 
 DeactNode incrementor() => fc((ctx) {
       final counter = ctx.globalState<int>('counter');
-      return button(onclick: (_) => counter.set((c) => c + 1), children: [txt('Click me to increment to counter')]);
+      return button(
+        onclick: (_) => counter.set((c) => c + 1),
+        children: [txt('Click me to increment to counter')],
+      );
     });
 
 DeactNode display() => fc((ctx) {
